@@ -1,5 +1,5 @@
 #/***************************************************************************
-# HEREqgis
+# Hqgis
 #
 # Access the HERE API in QGIS
 #							 -------------------
@@ -38,15 +38,15 @@ LOCALES =
 # translation
 SOURCES = \
 	__init__.py \
-	hereqgis.py hereqgis_dialog.py
+	hqgis.py hqgis_dialog.py
 
-PLUGINNAME = hereqgis
+PLUGINNAME = Hqgis
 
 PY_FILES = \
 	__init__.py \
-	hereqgis.py hereqgis_dialog.py
+	hqgis.py hqgis_dialog.py
 
-UI_FILES = hereqgis_dialog_base.ui
+UI_FILES = hqgis_dialog_base.ui
 
 EXTRAS = metadata.txt icon.png
 
