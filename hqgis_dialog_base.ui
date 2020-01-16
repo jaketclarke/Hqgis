@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>451</width>
-    <height>477</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -2058,6 +2058,20 @@
           <widget class="QLineEdit" name="AppCode">
            <property name="placeholderText">
             <string>LgbkS8Sa66CKpqDxAmiyaw</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="ApiKey">
+           <property name="placeholderText">
+            <string>api_key_goes_here</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Api Key</string>
            </property>
           </widget>
          </item>

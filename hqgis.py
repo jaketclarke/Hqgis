@@ -125,7 +125,7 @@ class Hqgis:
             callback=self.run,
             parent=self.iface.mainWindow())
         self.loadCredFunction()
-        if self.dlg.AppId.text() == "" or self.dlg.AppCode.text() == "":
+        if (self.dlg.AppId.text() == "" or self.dlg.AppCode.text() == "") and (self.dlg.ApiKey.text() == "" or self.dlg.ApiKey.text() == ""):
             self.dlg.status2.setText("No credentials in credentials tab found.")
             self.dlg.geocodeAddressButton.setEnabled(False)
             self.dlg.batchGeocodeFieldButton.setEnabled(False)
@@ -137,6 +137,7 @@ class Hqgis:
             self.dlg.calcIsoButtonBatch.setEnabled(False)
         self.dlg.AppId.editingFinished.connect(self.enableButtons)
         self.dlg.AppCode.editingFinished.connect(self.enableButtons)
+        self.dlg.ApiKey.editingFinished.connect(self.enableButtons)
         self.dlg.getCreds.clicked.connect(self.getCredFunction)
         self.dlg.saveCreds.clicked.connect(self.saveCredFunction)
         self.dlg.loadCreds.clicked.connect(self.loadCredFunction)
@@ -215,7 +216,7 @@ class Hqgis:
         # remove the toolbar
         del self.toolbar
     def enableButtons(self):
-        if self.dlg.AppId.text() != "" and self.dlg.AppCode.text() != "" :
+        if (self.dlg.AppId.text() != "" and self.dlg.AppCode.text() != "") or self.dlg.ApiKey.text() != "":
             self.dlg.geocodeAddressButton.setEnabled(True)
             self.dlg.batchGeocodeFieldButton.setEnabled(True)
             self.dlg.batchGeocodeFieldsButton.setEnabled(True)
@@ -617,6 +618,7 @@ class Hqgis:
     def getCredentials(self):
         self.appId = self.dlg.AppId.text()
         self.appCode = self.dlg.AppCode.text()
+        self.apiKey = self.dlg.ApiKey.text()
     def getCredFunction(self):
         import webbrowser
         webbrowser.open('https://developer.here.com/')
@@ -625,7 +627,7 @@ class Hqgis:
         self.dlg.credentialInteraction.setText("")
         fileLocation = os.path.dirname(os.path.realpath(__file__))+ os.sep + "creds"
         with open(fileLocation + os.sep + 'credentials.json', 'w') as outfile:
-            stringJSON = {"ID": self.dlg.AppId.text(), "CODE":  self.dlg.AppCode.text()}
+            stringJSON = {"ID": self.dlg.AppId.text(), "CODE":  self.dlg.AppCode.text(), "APIKEY":  self.dlg.ApiKey.text()}
             json.dump(stringJSON, outfile)
         self.dlg.credentialInteraction.setText("credentials saved to " + fileLocation + os.sep + 'credentials.json')
     def loadCredFunction(self):
@@ -642,6 +644,7 @@ class Hqgis:
                 data = json.load(f)
                 self.dlg.AppId.setText(data["ID"])
                 self.dlg.AppCode.setText(data["CODE"])
+                self.dlg.ApiKey.setText(data["APIKEY"])
             self.dlg.credentialInteraction.setText("credits used from " + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
         except:
             self.dlg.credentialInteraction.setText("no credits found in. Check for file" + scriptDirectory + os.sep + 'creds' + os.sep + 'credentials.json')
@@ -977,7 +980,7 @@ class Hqgis:
         if mode == 'public transport':
             mode = 'publicTransport'
         url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
-        "apikey=" + self.appId + \
+        "apikey=" + self.apiKey + \
         "&range=" + ",".join(intervalArray)+ \
         "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
         "&rangetype=" + self.dlg.metric.currentText().lower() + \
