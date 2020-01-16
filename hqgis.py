@@ -523,7 +523,6 @@ class Hqgis:
                 print(e)
             i += 1
             progress.setValue(i)
-
             #time.sleep(0.3)
             #time.sleep(0.3)
         pr.addFeatures(ResultFeatureList)
@@ -977,8 +976,9 @@ class Hqgis:
         traffic = self.dlg.trafficMode_2.currentText()
         if mode == 'public transport':
             mode = 'publicTransport'
-        url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
-        "apikey=" + self.appId + \
+        url = "https://isoline.route.api.here.com/routing/7.2/calculateisoline.json?" + \	        url = "https://isoline.route.ls.hereapi.com/routing/7.2/calculateisoline.json?" + \
+        "app_id=" + self.appId + \	        "apikey=" + self.appId + \
+        "&app_code=" + self.appCode +\
         "&range=" + ",".join(intervalArray)+ \
         "&mode=" + type + ";" + mode + ";traffic:" + traffic + \
         "&rangetype=" + self.dlg.metric.currentText().lower() + \
