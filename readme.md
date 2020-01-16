@@ -23,10 +23,24 @@ The Hqgis plugin comes with different analytical tools as the HERE API povides d
    Isochrones, or lines of equal (travel) times are possible to calculated using different modes and types as well as for different times of the day. This can be done on a single address/map point or using a point layer. The result will be color coded (categorized) in QGIS in red (long travel times/distances) to grenn (short travel times/distances). Find some nice examples at [Topi Tjukanovs Homepage](https://tjukanov.org/vintage-isochrones/).  
    ![Isochrones in HQGIS](https://i.imgur.com/pX9qEeJ.png)
    
-   
+## Building and Developing the plugin
+
+### Environment
+This guide is helpful in establishing a QGIS development environment on windows: [Quick Guide.](http://spatialgalaxy.net/2018/02/13/quick-guide-to-getting-started-with-pyqgis-3-on-windows/)
+
+### Deployment
+To deploy the plugin to your local QGIS plugin folder, run the command:
+`pb_tool deploy`
+From the root folder of the repository
+
+To create a zip file to manually install, run the command:
+`pb_tool zip`
+From the root folder of the repository
+
 ## Installation
-Currently the plugin is only hosted here on github as the version is premature. 
-If you want to use it in QGIS, please download the repository and place the content of the zip in your python plugins folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*). You can also install it directly in QGIS using the [plugin from ZIP option](https://gis.stackexchange.com/questions/302196/downloading-and-saving-plugins-for-qgis-3-4)
+Currently the plugin is only hosted here on github as the version is premature.
+
+If you want to use it in QGIS, please download the repository and place the content of the zip in your python plugins folder (linux: */home/USER/.local/share/QGIS/QGIS3/profiles/default/python/plugins* / win: *C:\Users\USER\AppData\Roaming\QGIS\QGIS3\profiles\default\python\plugins*). You can also install it directly in QGIS using the [plugin from ZIP option.](https://gis.stackexchange.com/questions/302196/downloading-and-saving-plugins-for-qgis-3-4)
 
 ## Credentials
 The plugin needs to have credentials from HERE. Therefore you need to register at least a freemium account (free of charge at [HERE.com](https://developer.here.com/) by creating a project and generate a JavaScript/REST App-Code and Id if not already generated.
